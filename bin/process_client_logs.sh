@@ -11,21 +11,24 @@ touch $out
 
 #Iterate over all files and lines
 for file in *; do
-    if [ -f "$file" ] && [ $file != $out ]; then
-        echo "$file"
-	cat $file | while read line
-	do
-           if [[ $line =~ $re || $rere ]]
+	{$awk '{
+           if (system(grep -q invalid "$file"))
 		then
-			month="${BASH_REMATCH[1]}"
-			day="${BASH_REMATCH[2]}"
-			hour="${BASH_REMATCH[3]}"
-			user="${BASH_REMATCH[4]}"
-			ip="${BASH_REMATCH[5]}"
+			month = $1
+			day = $2
+			hour = substr($3, 0, 2)
+			user = $11
+			ip = $13
 			echo "$month $day $hour $user $ip" >> $out
-		fi	
-	done
-    fi
+	   else
+	       month = $1
+	       day = $2
+	       hour = substr($3, 0, 2)
+	       user = $9
+	       ip = $11
+	       echo "$month $day $hour $user $ip" >> $out
+	       }'
+       }
 done
 
 

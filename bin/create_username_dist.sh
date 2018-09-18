@@ -11,7 +11,7 @@ do
 	cat $file >> $dir/temp_output
 done
 
-awk '{print $4}' $dir/temp_output | uniq -c | awk '{printf("data.addRow([\x27%s\x27, %s]);\n",$2 ,$1)}' >> $dir/out
+awk '{print $4}' $dir/temp_output | sort | uniq -c | awk '{printf("data.addRow([\x27%s\x27, %s]);\n",$2 ,$1)}' >> $dir/out
 ./bin/wrap_contents.sh $dir/out html_components/username_dist $dir/username_dist.html
 rm $dir/out
 rm $dir/temp_output

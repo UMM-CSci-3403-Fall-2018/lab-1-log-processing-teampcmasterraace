@@ -18,6 +18,7 @@ awk '{ print $5}' $dir/temp_out |
 	sort |
 	join -1 1 -2 1 etc/country_IP_map.txt - |
 	awk ' { print $2}' |
+	sort |
 	uniq -c |
 	awk '{printf("data.addRow([\x27%s\x27, %s]);\n",$2 ,$1)}' |
 	sort >> $dir/data_out

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Author SirLich (Liam Koehle)
+#GitHub: https://github.com/SirLich
+
 #Setup
 dir=$1
 
@@ -28,5 +31,5 @@ awk '{printf("data.addRow([\x27%s\x27, %s]);\n",$2 ,$1)}' >> $dir/data_out #Proc
 ./bin/wrap_contents.sh $dir/data_out html_components/username_dist $dir/username_dist.html
 
 #Clean up temp-files
-rm $dir/out
+rm $dir/data_out
 rm $dir/temp_out

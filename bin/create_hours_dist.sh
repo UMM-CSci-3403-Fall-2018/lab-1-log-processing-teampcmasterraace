@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Author SirLich (Liam Koehle)
+#GitHub: https://github.com/SirLich
+
 #Setup
 dir=$1
 

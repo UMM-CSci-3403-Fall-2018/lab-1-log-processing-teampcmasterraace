@@ -10,4 +10,5 @@ do
   echo $name
   mkdir $TMP_DIR/$name
   tar -xzf $file -C $TMP_DIR/$name
+  ./bin/process_client_logs.sh $TMP_DIR/$name
 done

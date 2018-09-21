@@ -4,7 +4,7 @@
 
 TMP_DIR=`mktemp --directory`
 
-for var in "$@"
+for file in "$@"
 do
-    echo "$var"
+    tar -xzf $file
 done
